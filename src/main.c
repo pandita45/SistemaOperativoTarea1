@@ -3,6 +3,8 @@
 #include <unistd.h>
 #include <sys/wait.h>
 #include <stdlib.h>
+#include <sys/time.h>
+#include <sys/resource.h>
 
 #define BUFFER_SIZE BUFSIZ
 #define PROMPT "shellao > "
@@ -53,6 +55,7 @@ int manejarInput(char* cadena){
         if (strcmp(argv[i][0], "help") == 0) {
             printf("  exit   - Cierra la shell\n");
             printf("  help   - Muestra esta ayuda\n");
+            printf("  miprof - Mide el tiempo de ejecucion de un comando\n");
             continue; 
         }
         if(strcmp(argv[i][0], "miprof") == 0){
@@ -69,6 +72,8 @@ int manejarInput(char* cadena){
                     }
                     argv[i][j] = NULL; 
                     struct timeval start, end;
+                    struct rusage usage;
+
                     gettimeofday(&start, NULL);
                     
                     pid_t pid = fork();
@@ -79,8 +84,17 @@ int manejarInput(char* cadena){
                     }
                     int status;
                     waitpid(pid, &status, 0);
+                    //termina el tiempo de uso del proceso hijo
                     gettimeofday(&end, NULL);
+                    //Obtener el uso de recursos del proceso hijo
+                    getrusage(RUSAGE_CHILDREN, &usage);
+
+                    double tiempoSistema = usage.ru_stime.tv_sec + usage.ru_stime.tv_usec / 1000000.0;
+                    double tiempoUsuario = usage.ru_utime.tv_sec + usage.ru_utime.tv_usec / 1000000.0;
                     double tiempoReal = (end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec) / 1000000.0;
+
+                    printf("Tiempo de usuario: %.6f segundos\n", tiempoUsuario);
+                    printf("Tiempo de sistema: %.6f segundos\n", tiempoSistema);
                     printf("Tiempo real: %.6f segundos\n", tiempoReal);
                     continue;
                 }
