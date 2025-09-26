@@ -75,7 +75,7 @@ int manejarInput(char* cadena){
             }
 
             if(strcmp(argv[i][0],"miprof") == 0){
-                execv("./miprof", argv[i]);
+                execv("./src/miprof", argv[i]);
             } else {
                 execvp(argv[i][0], argv[i]);
             }

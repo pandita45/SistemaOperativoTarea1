@@ -4,9 +4,8 @@
 - Se necesita tener las dependencias de c(gcc)
 ## Compilacion 
 ```bash
-gcc -o shell shell.c
+make shell
 ```
-Remplazar `shell.c` por el nombre del archivo, solo si es diferente.
 
 ## Ejecucion
 ```bash
@@ -14,7 +13,6 @@ Remplazar `shell.c` por el nombre del archivo, solo si es diferente.
 ```
 
 ## Comandos personalizados
-
 
 - `miprof help` → muestra la lista de comandos de miprof
 - `miprof ejec <comando>` → ejecuta el comando tomando el tiempo de usuario, sistema y real
