@@ -4,9 +4,8 @@
 - Se necesita tener las dependencias de c(gcc)
 ## Compilacion 
 ```bash
-gcc -o shell shell.c
+make shell
 ```
-Remplazar `shell.c` por el nombre del archivo, solo si es diferente.
 
 ## Ejecucion
 ```bash
