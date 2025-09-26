@@ -1,0 +1,9 @@
+total 64
+-rw-rw-r-- 1 pandita pandita     0 sep 25 21:36 hola
+-rwxrwxr-x 1 pandita pandita 21968 sep 25 21:22 main
+-rw-rw-r-- 1 pandita pandita  3048 sep 25 20:25 main.c
+-rwxrwxr-x 1 pandita pandita 24720 sep 25 21:36 miprof
+-rw-rw-r-- 1 pandita pandita  4317 sep 25 21:36 miprof.c
+Tiempo de usuario: 0.000000 s
+Tiempo de sistema: 0.004945 s
+Tiempo real: 0.005097 s

@@ -67,6 +67,10 @@ int main(int argc, char *argv[]) {
         gettimeofday(&start, NULL);
         pid_t pid = fork();
         if (pid == 0) {
+            dup2(fileno(fopen(filename, "a")), STDOUT_FILENO);
+            dup2(fileno(fopen(filename, "a")), STDERR_FILENO);
+            close(fileno(fopen(filename, "a")));
+
             execvp(cmd[0], cmd);
             fprintf(stderr, "Comando no encontrado: %s\n", cmd[0]);
             exit(1);
